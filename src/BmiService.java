@@ -1,7 +1,12 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class BmiService {
-    public String calculate(int weight, int height) {
-        int height_multp = height * height;
-        float bmi_value = (float) weight / (float) height_multp;
-        return String.format("%.2f", bmi_value);
+    public float calculate(int weight, int height) {
+        weight = weight * 10000;
+        int heightMultp = height * height;
+        float bmiValue = (float) weight / heightMultp;
+        float bmiValueRound = new BigDecimal(bmiValue).setScale(2, RoundingMode.HALF_DOWN).floatValue();
+        return bmiValueRound;
     }
 }
